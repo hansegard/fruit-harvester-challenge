@@ -77,9 +77,9 @@ seconds.
 
 ### Practical information
 
-- Please contact [Petter](mailto:petter.hansegard@zynka.se) if you have any questions regarding the task/if something
+- Please contact me if you have any questions regarding the task/if something
   isn't working as expected.
-- When you are done, please zip the project and send it to [Petter](mailto:petter.hansegard@zynka.se). A meeting will be
+- When you are done, please zip the project and send it to me. A meeting will be
   booked where we together go through the solution and discuss your design decisions.
 
 **Good luck and have fun!**
