@@ -15,7 +15,7 @@ generated detailing the cumulative yield for each farmer, tree and type of fruit
 
 ### Setup
 
-1. Open this directory in your favourite IDE (e.g. VS Code).
+1. Clone this repo and open it in your favourite IDE.
 2. Start the robot harvester simulator by running the following command in a terminal:
    ```bash
    docker-compose up -d
