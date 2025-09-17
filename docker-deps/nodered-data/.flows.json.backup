@@ -1,0 +1,186 @@
+[
+    {
+        "id": "63e994f8f3530040",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a0a2645e784b183f",
+        "type": "mqtt-broker",
+        "name": "Mosquitto",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f56b8afae66bc0ed",
+        "type": "mqtt out",
+        "z": "63e994f8f3530040",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a0a2645e784b183f",
+        "x": 990,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a33c259e67db5983",
+        "type": "inject",
+        "z": "63e994f8f3530040",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "69b93259ad5566c5"
+            ]
+        ]
+    },
+    {
+        "id": "bba24ec2d20d74dd",
+        "type": "function",
+        "z": "63e994f8f3530040",
+        "name": "RNG",
+        "func": "const farmerMapping = {\n    1: 1,\n    2: 1,\n    3: getFarmerValue(),\n    4: 2,\n    5: 2,\n}\nconst fruitYield = Math.floor(Math.random() * 100)\nmsg.topic = \"/harvest/robot-data\"\nmsg.payload.harvest = fruitYield\nmsg.payload.farmerId = farmerMapping[msg.payload.id]\nmsg.payload.treeId = msg.payload.id\nmsg.payload.timestamp = new Date().toISOString()\ndelete msg.payload.id\nreturn msg\n\nfunction getFarmerValue() {\n    const minutes = new Date().getMinutes();\n    return minutes % 3 === 0 ? 2 : 1;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "32c0db4e4475ee6f",
+                "8c674d47ac03de4c"
+            ]
+        ]
+    },
+    {
+        "id": "69b93259ad5566c5",
+        "type": "function",
+        "z": "63e994f8f3530040",
+        "name": "Create trees",
+        "func": "msg.payload = [\n    {\n        id: 1,\n        type: \"APPLE\"\n    },\n    {\n        id: 2,\n        type: \"PEAR\"\n    },\n    {\n        id: 3,\n        type: \"PEAR\"\n    },\n    {\n        id: 4,\n        type: \"APPLE\"\n    },\n    {\n        id: 5,\n        type: \"APPLE\"\n    }\n]\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "83535790a6c40e3d"
+            ]
+        ]
+    },
+    {
+        "id": "32c0db4e4475ee6f",
+        "type": "debug",
+        "z": "63e994f8f3530040",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "83535790a6c40e3d",
+        "type": "split",
+        "z": "63e994f8f3530040",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 510,
+        "y": 80,
+        "wires": [
+            [
+                "bba24ec2d20d74dd"
+            ]
+        ]
+    },
+    {
+        "id": "8c674d47ac03de4c",
+        "type": "delay",
+        "z": "63e994f8f3530040",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "400",
+        "randomUnits": "milliseconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 120,
+        "wires": [
+            [
+                "f56b8afae66bc0ed"
+            ]
+        ]
+    }
+]
