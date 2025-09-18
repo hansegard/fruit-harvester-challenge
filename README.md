@@ -27,7 +27,7 @@ the [official documentation](https://docs.docker.com/get-started/).
 Note 2: If you want to restart the simulator from scratch, you can run
 
 ```bash
-  docker compose down -v
+docker compose down -v
 ```
 
 to remove all data and then run the above command again.
