@@ -18,19 +18,29 @@ generated detailing the cumulative yield for each farmer, tree and type of fruit
 1. Clone this repo and open it in your favourite IDE.
 2. Start the robot harvester simulator by running the following command in a terminal:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
-   Note: If you don't have docker/docker-compose installed, please refer to
-   the [official documentation](https://docs.docker.com/get-started/).
 
-This will start the following tools:
+Note: If you don't have docker/docker-compose installed, please refer to
+the [official documentation](https://docs.docker.com/get-started/).
+
+Note 2: If you want to restart the simulator from scratch, you can run
+
+```bash
+  docker compose down -v
+```
+
+to remove all data and then run the above command again.
+
+Running the compose file will start the following tools:
 
 #### MQTT broker
 
 An MQTT broker is started on `localhost:1883`. You can use any MQTT client to subscribe to the topic
 `/harvest/robot-data`
 to see the data being published by the robot harvesters. No auth is required to connect. The data is published in JSON
-format. All incoming messages follows the same format.
+format. All incoming messages follows the same format which you have to figure out by looking at the data being
+published.
 
 #### Database
 
@@ -74,13 +84,18 @@ seconds.
 - You can use any web framework of your choice if you decide to create a REST API or a web page/dashboard.
 - You can use AI tools like ChatGPT to help you with the implementation, but please make sure to understand the code
   and not just copy-paste it.
+- Try to build a solution which is responsive, even at larger time horizons and data volumes. For example, if the
+  harvester reports every 10 seconds for a whole day, that would be 8640 messages per harvester, and with 2 harvesters
+  that would be 17280 messages per day. The solution should be able to handle this amount of data without significant
+  performance degradation.
 
 ### Practical information
 
 - Please contact me if you have any questions regarding the task/if something
   isn't working as expected.
-- When you are done, please zip the project and send it to me. A meeting will be
-  booked where we together go through the solution and discuss your design decisions.
+- When you are done, please create a pull request in this repo or zip the project and send it to me. Make sure to
+  include any SQL schemas, for example by including the table definitions in `.sql` format. A meeting will be booked
+  where we together will go through the solution and discuss your design decisions.
 
 **Good luck and have fun!**
 
