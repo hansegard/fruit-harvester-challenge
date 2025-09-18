@@ -1,4 +1,4 @@
-## Robot harvest reporter
+## Fruit harvester challenge
 
 This is a project that collects data from robot harvesters and generates reports. The
 objective is to consume data from robot harvesters, process it, persist it in a database
