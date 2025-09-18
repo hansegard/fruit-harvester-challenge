@@ -21,16 +21,16 @@ generated detailing the cumulative yield for each farmer, tree and type of fruit
    docker compose up -d
    ```
 
-Note: If you don't have docker/docker-compose installed, please refer to
-the [official documentation](https://docs.docker.com/get-started/).
+_Note: If you don't have docker/docker-compose installed, please refer to
+the [official documentation](https://docs.docker.com/get-started/)._
 
-Note 2: If you want to restart the simulator from scratch, you can run
+_Note 2: If you want to restart the simulator from scratch, you can run_
 
 ```bash
 docker compose down -v
 ```
 
-to remove all data and then run the above command again.
+_to remove all data and then run the above command again._
 
 Running the compose file will start the following tools:
 
